@@ -502,7 +502,7 @@ body.dialog-open { overflow:hidden }
   meetClose.addEventListener('click',closeMeet);
   meetLayer.addEventListener('click',function(e){if(e.target===meetLayer)closeMeet();});
   document.getElementById('meet-yes').addEventListener('click',function(){
-    meetResponse.textContent='Tanışma işlemi başlatıldı. Ancak taraflardan biri henüz kendisiyle tanışamadığı için süreç askıya alındı. Anlayışınız için üzgünüz. Biz de üzgünüz. Genel olarak.';
+    meetResponse.textContent='Tanışma işlemi başlatıldı. Ancak taraflardan biri henüz kendisiyle tanışamadığı için süreç askıya alındı. Anlayışınız için üzgünüz. Gerçekten üzgünüz. Genel olarak.';
     meetResponse.hidden=false;
     meetActions.hidden=true;
     meetClose.focus();
