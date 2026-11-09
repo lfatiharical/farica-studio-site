@@ -9,6 +9,24 @@
 <meta property="og:title" content="Fatih Arıca | Başvurulan pozisyon: Ben">
 <meta property="og:description" content="1987 model | Yazılımı güncel, varoluşsal hataları kronik.">
 <title>Fatih Arıca — Curriculum Vitae / FatihOS</title>
+
+<!-- FatihOS / Google Analytics 4 - sayfa görüntülemeleri ve proje tıklamaları -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G0VMWSFD89"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-G0VMWSFD89', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+  window.FatihOSAnalytics = {
+    track: function(eventName, parameters) {
+      gtag('event', eventName, Object.assign({ event_category: 'fatihos' }, parameters || {}));
+    }
+  };
+</script>
+
 <style>
 :root {
   --paper:#f4f2ec; --paper2:#ecebe6; --ink:#1c2730; --muted:#687078; --line:#d9d8d0;
@@ -236,6 +254,7 @@ body.dialog-open { overflow:hidden }
  .final{padding:30px 0}
  .reveal{opacity:1;transform:none}
 }
+
 </style>
 </head>
 <body>
@@ -439,10 +458,11 @@ body.dialog-open { overflow:hidden }
 </main>
 <footer>
  <div class="container footer-inner">
-   <span>© <span id="year">2026</span> FatihOS / Güncellemeler devam ediyor.</span>
+   <span>© <span id="year">2026</span> FatihOS / Güncellemeler devam ediyor. &nbsp; · &nbsp; <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Ziyaret istatistikleri hakkında</a></span>
    <span><a href="#top">Başa dön ↑</a> &nbsp; · &nbsp; <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.farica.lirelya">Lirelya ↗</a> &nbsp; · &nbsp; <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@CatlakCember/videos">Çatlak Çember ↗</a></span>
  </div>
 </footer>
+
 
 <!-- Bilerek iletişim formu, e-posta ve telefon bağlantısı içermeyen tanışma penceresi -->
 <div class="meet-layer" id="meet-layer" hidden>
@@ -478,6 +498,16 @@ body.dialog-open { overflow:hidden }
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   document.getElementById('year').textContent = String(new Date().getFullYear());
 
+  // GA4 sayfa görüntüleme otomatik, özel buton tıklamaları aşağıda izlenir.
+  const analytics = window.FatihOSAnalytics;
+  // Her iki proje bağlantısının üst ve alt kopyaları da ölçülür.
+  document.querySelectorAll('a[href*="play.google.com/store/apps/details?id=com.farica.lirelya"]').forEach(function (link) {
+    link.addEventListener('click', function () { analytics.track('lirelya_tiklama'); });
+  });
+  document.querySelectorAll('a[href*="youtube.com/@CatlakCember/videos"]').forEach(function (link) {
+    link.addEventListener('click', function () { analytics.track('catlak_cember_tiklama'); });
+  });
+
   const meetLayer = document.getElementById('meet-layer');
   const meetDialog = document.getElementById('meet-dialog');
   const meetOpen = document.getElementById('meet-open');
@@ -491,6 +521,7 @@ body.dialog-open { overflow:hidden }
     if(meetReturnFocus) meetReturnFocus.focus();
   }
   meetOpen.addEventListener('click', function(){
+    analytics.track('tanisma_acildi');
     meetReturnFocus=document.activeElement;
     meetResponse.hidden=true;
     meetResponse.textContent='';
@@ -502,12 +533,14 @@ body.dialog-open { overflow:hidden }
   meetClose.addEventListener('click',closeMeet);
   meetLayer.addEventListener('click',function(e){if(e.target===meetLayer)closeMeet();});
   document.getElementById('meet-yes').addEventListener('click',function(){
+    analytics.track('tanisma_evet');
     meetResponse.textContent='Tanışma işlemi başlatıldı. Ancak taraflardan biri henüz kendisiyle tanışamadığı için süreç askıya alındı. Anlayışınız için üzgünüz. Gerçekten üzgünüz. Genel olarak.';
     meetResponse.hidden=false;
     meetActions.hidden=true;
     meetClose.focus();
   });
   document.getElementById('meet-no').addEventListener('click',function(){
+    analytics.track('tanisma_hayir');
     meetResponse.textContent='Geç kalmış olabilirsiniz, merak süreci başlatıldı.';
     meetResponse.hidden=false;
     meetActions.hidden=true;
@@ -526,6 +559,7 @@ body.dialog-open { overflow:hidden }
   const btn = document.getElementById('diagnostic-button'), out = document.getElementById('diag-result');
   let times=0;
   btn.addEventListener('click',function(){
+    analytics.track('anlam_arandi');
     times++;
     btn.disabled=true; out.textContent='> Varoluşsal veriler taranıyor...';
     const wait = reduce ? 0 : 650;
