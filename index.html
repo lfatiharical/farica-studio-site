@@ -74,7 +74,14 @@ h1 em { font-weight:normal;color:#617e75 }
 .cta.dark { background:#1b2b35;color:white;border:1px solid #1b2b35 }
 .cta.outline { background:transparent;color:#1b2b35;border:1px solid #a5aca9 }
 .signature-card { position:relative;background:#fffefa;border:1px solid #cfd3cd;padding:38px 34px 29px;box-shadow:22px 23px 0 -8px #e2e4dc,0 38px 90px rgba(29,42,43,.11);transform:rotate(2deg);max-width:420px;width:100%;margin-left:auto }
-.signature-card::before { content:"CV";position:absolute;right:21px;top:13px;font:italic 91px/1 Georgia,serif;color:rgba(23,49,48,.055) }
+/* Sadece kişisel bilgiler kartı: kimlik doğrulanamadı damgası */
+.identity-stamp { position:absolute;right:15px;top:17px;transform:rotate(-10deg);border:2px solid #a33a3d;color:#a33a3d;background:rgba(255,254,250,.86);padding:6px 8px;font:800 10px/1.3 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;letter-spacing:.075em;text-align:center;opacity:.75;pointer-events:none;z-index:2 }
+.signature-card > .tiny-label:nth-child(2) { max-width:calc(100% - 144px);line-height:1.5 }
+.signature-card .card-line { gap:12px;align-items:flex-start }
+.signature-card .card-line > span { flex:0 0 35%;line-height:1.55 }
+.signature-card .card-line > strong { flex:1;min-width:0;font-size:12.7px;font-weight:700;line-height:1.55;overflow-wrap:break-word }
+.card-system-note { margin:17px 0 0;color:#687078;font-size:11.5px;line-height:1.7;font-style:italic }
+@media(max-width:420px) { .signature-card {padding:34px 23px 28px} .identity-stamp {right:10px;font-size:9px} .signature-card .card-line > strong {font-size:12px} }
 .tiny-label { color:#73807d;letter-spacing:.16em;font-size:10px;font-weight:850;text-transform:uppercase }
 .card-name { font:normal 35px/1.13 Georgia,serif;margin:31px 0 28px }
 .card-line { display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #dfe3db;padding:12px 0;gap:20px;font-size:12px }
@@ -276,19 +283,20 @@ body.dialog-open { overflow:hidden }
     <span class="kicker">CURRICULUM VITAE / KİŞİSEL DOSYA</span>
     <h1>Fatih<br><em>Arıca.</em></h1>
     <p class="hero-lead">1987 model <span style="color:#909994">/</span> Yazılımı güncel, varoluşsal hataları kronik.</p>
-    <p class="hero-note">Kendi hayatında anlam arayan, tam zamanlı kamu çalışanı. Şimdiye kadar kurumsal olarak gayet iyi görünüyoruz.</p>
+    <p class="hero-note">Şahsın hayatta olduğu kesinleşti. Yaşamakla neyi kastettiği konusunda kurumumuz yetkili değildir.</p>
     <div class="actions"><a class="cta dark" href="#deneyim">Öz geçmişimi incele ↓</a><button class="cta outline" onclick="window.print()" type="button">Yazdır / PDF olarak kaydet ↗</button></div>
   </div>
   <aside class="signature-card reveal" aria-label="Kişisel dosya özeti">
+    <div class="identity-stamp" aria-label="Kimlik doğrulanamadı">KİMLİK<br>DOĞRULANAMADI</div>
     <div class="tiny-label">FORM NO. 1987 / ÖZ GEÇMİŞ</div>
     <div class="card-name">Kişisel<br>Bilgiler</div>
-    <div class="card-line"><span>Başvurulan pozisyon</span><strong>Ben</strong></div>
-    <div class="card-line"><span>Mevcut pozisyon</span><strong>Kendi hayatında anlam arayan, tam zamanlı kamu çalışanı.</strong></div>
-    <div class="card-line"><span>Çalışma şekli</span><strong>Hibrit</strong></div>
-    <div class="card-line"><span>İkamet</span><strong>Eskişehir*</strong></div>
-    <div class="card-line"><span>Medeni hâl</span><strong>İç dünyamla karmaşık bir ilişkimiz var.</strong></div>
+    <div class="card-line"><span>Başvurulan pozisyon</span><strong>Nietzsche — Üstün insan</strong></div>
+    <div class="card-line"><span>Mevcut pozisyon</span><strong>Yatay... Uzanamadığım her yerden nefret ediyorum.</strong></div>
+    <div class="card-line"><span>Çalışma şekli</span><strong>Hibrit. Beden mesaiye, zihin itiraza gidiyor.</strong></div>
+    <div class="card-line"><span>İkamet</span><strong>Eskişehir (Şimdilik — 3 yılda bir şehir değiştirdiğim için, çabuk sıkılıyorum siz insanlardan.)</strong></div>
+    <div class="card-line"><span>Medeni hâl</span><strong>Buraya bir espri bulacağım umarım ama şimdilik aklıma bir espri gelmiyor o kadar uzağım konuya...</strong></div>
     <div class="card-stamp"><span>● Sistem çalışıyor</span><span class="scribble">F.</span></div>
-    <div class="tiny-label" style="margin-top:18px">* Bedeni Eskişehir'de, zihni çoğunlukla başka bir yerde.</div>
+    <p class="card-system-note">Yani bunun çalışıyor hali oluşunu pek de kabul edemiyorum ama olsun, dumanlar çıkmıyor en azından...</p>
   </aside>
  </div>
 </section>
